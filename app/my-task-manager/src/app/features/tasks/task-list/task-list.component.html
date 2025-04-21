@@ -1,0 +1,44 @@
+<div class="container mt-4">
+    <h4 class="mb-3">Your Tasks</h4>
+
+    @if (tasks().length > 0) {
+      <div class="row">
+        @for (task of tasks(); track task.id){
+          <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                @if (editId === task.id) {
+                  <form [formGroup]="editForm" (ngSubmit)="saveEdit(task.id)">
+                    <div class="mb-2">
+                      <input class="form-control" formControlName="title" />
+                    </div>
+                    <div class="mb-2">
+                      <textarea class="form-control" formControlName="description"></textarea>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input type="checkbox" class="form-check-input" formControlName="completed" id="check-{{task.id}}" />
+                      <label class="form-check-label" for="check-{{task.id}}">Completed</label>
+                    </div>
+                    <button class="btn btn-sm btn-primary me-2" type="submit">Save</button>
+                    <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
+                  </form>
+                } @else {
+                  <h5 class="card-title">
+                    {{ task.title }}
+                    @if (task.completed) {
+                      <span class="badge bg-success ms-2">Done</span>
+                    }
+                  </h5>
+                  <p class="card-text">{{ task.description || 'No description provided.' }}</p>
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="editTask(task)">Edit</button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteTask(task.id)">Delete</button>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="text-muted">No tasks created yet.</p>
+    }
+  </div>

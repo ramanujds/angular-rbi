@@ -1,0 +1,14 @@
+## Database property for h2
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:taskdb;
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
