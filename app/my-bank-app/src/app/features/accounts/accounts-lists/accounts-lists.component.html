@@ -1,0 +1,9 @@
+<h2>List of accounts</h2>
+
+<ul>
+    @for (account of accountList(); track account.accountNumber) {
+         <li>
+             {{account|json}}
+         </li>
+    } 
+ </ul>

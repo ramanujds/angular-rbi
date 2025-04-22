@@ -1,0 +1,24 @@
+header,footer{
+    min-height: 100px;
+}
+
+header{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+footer{
+    background-color: lightslategrey;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+main{
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 500px;
+}

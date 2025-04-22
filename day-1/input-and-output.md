@@ -1,61 +1,75 @@
+## How `@Output()` works in Angular.
 
-- **React-style:** Pass function to child and call it → parent updates state
-- **Angular-style:** Use `@Output()` in child to emit event → parent listens and handles it
+---
 
-## Step-by-Step Example
+### Scenario
+We want a **child component** with a button. When the button is clicked, it sends a message to the **parent component** using `@Output()`.
 
-### 1. Parent Component (app.component.ts)
+---
+
+### 1. Child Component: `MessageButtonComponent`
 
 ```ts
-@Component({
-  selector: 'app-root',
-  template: `
-    <h2>Items</h2>
-    <ul>
-      <li *ngFor="let item of items">{{ item }}</li>
-    </ul>
-    <app-child (addItem)="handleAddItem($event)"></app-child>
-  `
-})
-export class AppComponent {
-  items: string[] = ['Apple', 'Banana'];
+import { Component, EventEmitter, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-  handleAddItem(newItem: string) {
-    this.items.push(newItem);
+@Component({
+  standalone: true,
+  selector: 'app-message-button',
+  template: `
+    <button (click)="sendMessage()">Send Message</button>
+  `,
+  imports: [CommonModule]
+})
+export class MessageButtonComponent {
+  @Output() messageSent = new EventEmitter<string>();
+
+  sendMessage() {
+    this.messageSent.emit('Hello from child!');
   }
 }
 ```
 
-### 2. Child Component (child.component.ts)
+- `@Output() messageSent` creates an event
+- `emit()` sends a message when the button is clicked
+
+---
+
+### 2. Parent Component: `ParentComponent`
 
 ```ts
-@Component({
-  selector: 'app-child',
-  template: `
-    <input [(ngModel)]="item" placeholder="Enter item" />
-    <button (click)="submitItem()">Add</button>
-  `
-})
-export class ChildComponent {
-  @Output() addItem = new EventEmitter<string>();
-  item: string = '';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MessageButtonComponent } from './message-button.component';
 
-  submitItem() {
-    if (this.item.trim()) {
-      this.addItem.emit(this.item);
-      this.item = '';
-    }
+@Component({
+  standalone: true,
+  selector: 'app-parent',
+  template: `
+    <app-message-button (messageSent)="handleMessage($event)"></app-message-button>
+    <p>Received: {{ message }}</p>
+  `,
+  imports: [CommonModule, MessageButtonComponent]
+})
+export class ParentComponent {
+  message = '';
+
+  handleMessage(msg: string) {
+    this.message = msg;
   }
 }
 ```
 
----
-
-## How It Works
-
-- `@Output() addItem` in the child emits an event with a string.
-- In the parent template, `(addItem)="handleAddItem($event)"` binds the event to the `handleAddItem()` method.
-- When the child emits the event, the parent handles it and updates its state.
+- Listens to `(messageSent)` event
+- Updates the `message` variable with the data from the child
 
 ---
 
+### Output in the browser
+
+```
+[Button: Send Message]
+Received: Hello from child!
+```
+
+When you click the button, the parent displays the message received from the child.
