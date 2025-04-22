@@ -1,9 +1,40 @@
 <h2>List of accounts</h2>
 
-<ul>
+<!-- <ul>
     @for (account of accountList(); track account.accountNumber) {
-         <li>
-             {{account|json}}
-         </li>
-    } 
- </ul>
+    <li>
+        {{account|json}}
+    </li>
+    }
+</ul> -->
+
+<!-- <table class="table table-dark">
+<thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Account No.</th>
+        <th>Created On</th>
+        <th>Balance</th>
+    </tr>
+</thead>
+<tbody>
+    @for (account of accountList(); track account.accountNumber) {
+        <tr>
+            <td>{{account.id}}</td>
+        <td>{{account.accountHolderName}}</td>
+        <td>{{account.accountNumber}}</td>
+        <td>{{account.createdAt}}</td>
+        <td>{{account.balance}}</td>
+        </tr>
+    }
+    </tbody>
+</table> -->
+
+<div class="row">
+
+@for (account of accountList(); track account.accountNumber) {
+     <app-account-card class="col-sm-6 mb-3 mb-sm-0" [account]="account"></app-account-card>
+    }
+
+</div>

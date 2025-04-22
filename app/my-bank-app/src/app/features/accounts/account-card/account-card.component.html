@@ -1,0 +1,10 @@
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{account?.id}} : Name - {{account?.accountHolderName}}</h5>
+          <p class="card-text">Account Number : {{account?.accountNumber}}</p>
+          <p class="card-text">Account Balance : {{account?.balance}}</p>
+          <p class="card-text">Created at : {{account?.createdAt}}</p>
+          <button (click)="delete(account?.id)" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
