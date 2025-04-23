@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BankAccount } from '../../../models/BankAccount';
 import { AccountsService } from '../accounts.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-accounts-form-reactive',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './accounts-form-reactive.component.html',
   styleUrl: './accounts-form-reactive.component.css'
 })

@@ -33,7 +33,7 @@
 
 <div class="row">
 
-@for (account of accountList(); track account.accountNumber) {
+@for (account of accountList(); track account.id) {
      <app-account-card class="col-sm-6 mb-3 mb-sm-0" [account]="account"></app-account-card>
     }
 
