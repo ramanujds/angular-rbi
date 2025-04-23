@@ -1,11 +1,67 @@
-<input type="text" class="form-control" name="accHolderName" id="accHolderName" #tAccHolderName> 
-<button type="button" class="btn btn-primary" (click)="createAccount(tAccHolderName.value)">Create Account</button>
+<h2>Enter Account Details</h2>
+<form (submit)="createAccount(formRef.value)" #formRef="ngForm">
+    <div class="form-group">
+        <label for="accountHolderName" class="form-label">Name</label>
+        <input type="text" 
+                name="accountHolderName" 
+                id="accountHolderName" 
+                class="form-control" 
+                ngModel
+                required pattern="[a-zA-Z ]{3,30}"
+                #accHoldereNameRef="ngModel">
+                @if (accHoldereNameRef.touched && accHoldereNameRef.invalid){
+                 @if(accHoldereNameRef.errors?.["required"]) {
+                    <p class="text-danger">Name is required</p>
+                }
+                @else {
+                    <p class="text-danger">Invalid Name</p>
+                }
+            }
+    </div>
+    
+    <div class="form-group">
+        <label for="accountNumber" class="form-label">Account accountNumber</label>
+        <input type="text" 
+                name="accountNumber" 
+                id="accountNumber" 
+                class="form-control" 
+                ngModel
+                required>
+    </div>
+
+    <div class="form-group">
+        <label for="balance" class="form-label">Initial Balance</label>
+        <input type="text" 
+                name="balance" 
+                id="balance" 
+                class="form-control" 
+                ngModel
+                required>
+    </div>
+
+    <div class="form-group">
+        <label for="createdAt" class="form-label">Name</label>
+        <input type="date" 
+                name="createdAt" 
+                id="createdAt" 
+                class="form-control" 
+                ngModel
+                required>
+    </div>
+
+    <div class="form-group">
+        <label for="accountType" class="form-label">accountType</label>
+        <select name="accountType" required id="accountType" ngModel>
+            <option selected value="Savings">Savings</option>
+            <option value="Current">Current</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+       <button type="submit" [disabled]="formRef.invalid" class="btn btn-success">Create Account</button> 
+       <button type="reset" class="btn btn-dark">Reset</button>
+       
+    </div>
 
 
-<!-- <ul>
-   @for (account of accountList; track account.accountHolderName) {
-        <li>
-            {{account|json}}
-        </li>
-   } 
-</ul> -->
+</form>
