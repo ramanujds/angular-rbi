@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BankAccount } from '../../../models/BankAccount';
+import { AccountsService } from '../accounts.service';
 
 @Component({
   selector: 'app-accounts-form-reactive',
@@ -10,6 +12,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 export class AccountsFormReactiveComponent {
 
   formBuilder = inject(FormBuilder);
+  accountService = inject(AccountsService);
 
   accountForm = this.formBuilder.group(
     {
@@ -17,13 +20,22 @@ export class AccountsFormReactiveComponent {
       accountNumber:['',[Validators.required]],
       balance:[0,[Validators.required]],
       accountType:['Savings',[Validators.required]],
-      createdAt:['',[Validators.required]]
+      createdAt:['',[Validators.required]],
+      addressForm:this.formBuilder.group(
+        {
+          city:['',[Validators.required]],
+          state:[''],
+          zipCode:['']
+        }
+      )
     }
   )
 
   createAccount(account:any){
-    console.log(account);
     
+    this.accountService.createAccount(account).subscribe(
+      next => console.log(next)
+    )
   }
 
 

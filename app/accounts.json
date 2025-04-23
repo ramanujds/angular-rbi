@@ -47,6 +47,14 @@
       "createdAt": "2025-04-22",
       "accountType": "Savings",
       "id": 6
+    },
+    {
+      "accountHolderName": "Gaurav",
+      "accountNumber": "aa11223121",
+      "balance": "10000",
+      "accountType": "Savings",
+      "createdAt": "2025-04-22",
+      "id": 7
     }
   ]
 }
