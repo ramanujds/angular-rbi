@@ -31,6 +31,22 @@
       "balance": 2500,
       "accountType": "checking",
       "createdAt": "2023-04-01T10:00:00Z"
+    },
+    {
+      "accountHolderName": "Gaurav",
+      "accountNumber": "aa11223121",
+      "balance": "2000",
+      "createdAt": "2025-04-16",
+      "accountType": "Savings",
+      "id": 5
+    },
+    {
+      "accountHolderName": "Gaurav",
+      "accountNumber": "aa11223121",
+      "balance": "2000",
+      "createdAt": "2025-04-22",
+      "accountType": "Savings",
+      "id": 6
     }
   ]
 }

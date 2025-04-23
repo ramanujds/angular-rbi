@@ -1,6 +1,7 @@
 import { inject, Injectable, Signal, signal } from '@angular/core';
 import { BankAccount } from '../../models/BankAccount';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,20 +17,9 @@ export class AccountsService {
 
   private accountList = signal<BankAccount[]>([])
   
-    createAccount(accountName:string) {
-        let account:BankAccount = {
-            id:this.accountList().length?this.accountList()[this.accountList().length-1].id+1:1,
-            accountNumber:crypto.randomUUID(),
-            accountType:'Savings',
-            accountHolderName:accountName,
-            createdAt:new Date(),
-            balance:0
-        }
-  
-        this.acoountsClient.post<Array<BankAccount>>(this.baseUrl,account).subscribe(
-          response => this.getAccounts()
-        )
-        
+    createAccount(account:BankAccount): Observable<Array<BankAccount>> {
+      
+         return  this.acoountsClient.post<Array<BankAccount>>(this.baseUrl,account);
 
       }
 

@@ -15,13 +15,20 @@ export class AccountsFromComponent {
   // constructor(private accountService:AccountsService){}
 
   accountService = inject(AccountsService);
-
-  accountList : Array<BankAccount> = [];
+  accountName:string='';
 
   createAccount(account:BankAccount) {
 
-    console.log(account)
-    // this.accountService.createAccount(accountName);
+    this.accountService.createAccount(account).subscribe(
+      next => {
+        console.log(next)
+        this.accountService.getAccounts()
+      },
+      error =>{
+        console.error("Server not available")
+      },
+      () => console.log("Done")
+    )
   }
 
 }

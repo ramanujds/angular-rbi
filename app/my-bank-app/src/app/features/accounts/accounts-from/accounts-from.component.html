@@ -3,12 +3,16 @@
     <div class="form-group">
         <label for="accountHolderName" class="form-label">Name</label>
         <input type="text" 
+                [(ngModel)]="accountName"
                 name="accountHolderName" 
                 id="accountHolderName" 
                 class="form-control" 
                 ngModel
                 required pattern="[a-zA-Z ]{3,30}"
-                #accHoldereNameRef="ngModel">
+                #accHoldereNameRef="ngModel"
+                [class.is-invalid]="accHoldereNameRef.touched && accHoldereNameRef.invalid"
+                [class.is-valid]="accHoldereNameRef.touched && accHoldereNameRef.valid"
+                >
                 @if (accHoldereNameRef.touched && accHoldereNameRef.invalid){
                  @if(accHoldereNameRef.errors?.["required"]) {
                     <p class="text-danger">Name is required</p>
@@ -17,6 +21,7 @@
                     <p class="text-danger">Invalid Name</p>
                 }
             }
+            {{accountName}}
     </div>
     
     <div class="form-group">
