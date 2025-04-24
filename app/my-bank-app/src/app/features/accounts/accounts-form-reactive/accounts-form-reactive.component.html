@@ -17,6 +17,13 @@
     <div class="form-group">
         <label for="accountNumber" class="form-label">Account accountNumber</label>
         <input type="text" formControlName="accountNumber" name="accountNumber" id="accountNumber" class="form-control">
+        @if (accountForm.controls.accountNumber.invalid && accountForm.controls.accountNumber.touched){
+            @if (accountForm.controls.accountNumber.errors?.["required"]) {
+                <p class="text-danger">Account number is required</p>
+            }
+            @else if(accountForm.controls.accountNumber.errors?.["invalid-account-number"]) {<p class="text-danger">Account number already exists</p>}
+        
+        }
     </div>
 
     <div class="form-group">
@@ -45,11 +52,8 @@
     <div class="form-group">
         <button type="submit" [disabled]="accountForm.invalid" class="btn btn-success">Create Account</button>
         <button type="reset" class="btn btn-dark">Reset</button>
-
     </div>
-
-
 
 </form>
 
-{{accountForm.value|json}}
+{{accountForm.value | json}}

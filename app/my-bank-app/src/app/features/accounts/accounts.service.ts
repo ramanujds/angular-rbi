@@ -39,5 +39,10 @@ export class AccountsService {
        
       }
 
+      fetchAccountByNumber(accountNumber:string):Observable<Array<BankAccount>>{
+        
+          return this.acoountsClient.get<Array<BankAccount>>(this.baseUrl+"?accountNumber="+accountNumber)
+      }
+
 
 }
