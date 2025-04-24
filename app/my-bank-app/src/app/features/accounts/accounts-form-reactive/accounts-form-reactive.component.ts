@@ -19,7 +19,7 @@ export class AccountsFormReactiveComponent {
   accountForm = this.formBuilder.group(
     {
       accountHolderName:['',[Validators.required, Validators.pattern('[a-zA-Z ]+')]],
-      accountNumber:['',[],[accountNumberValidator(this.accountService)]],
+      accountNumber:['',[Validators.required],[accountNumberValidator(this.accountService)]],
       balance:[0,[Validators.required]],
       accountType:['Savings',[Validators.required]],
       createdAt:['',[Validators.required]],
