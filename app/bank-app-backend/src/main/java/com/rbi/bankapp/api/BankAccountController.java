@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/accounts")
-@CrossOrigin(origins = "http://localhost:4200")
 public class BankAccountController {
 
     private BankAccountService bankAccountService;

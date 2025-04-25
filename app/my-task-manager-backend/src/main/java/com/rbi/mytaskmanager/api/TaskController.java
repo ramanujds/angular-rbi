@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/tasks")
-@CrossOrigin(origins = "http://localhost:4200")
 public class TaskController {
 
     private final TaskRepository taskRepository;
@@ -31,19 +30,16 @@ public class TaskController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    @PreAuthorize("hasRole('USER')")
     public Task createTask(@RequestBody Task task) {
         return taskRepository.save(task);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('USER')")
     public void deleteTask(@PathVariable String id) {
         taskRepository.deleteById(id);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('USER')")
     public Task updateTask(@PathVariable String id, @RequestBody Task task) {
         task.setId(id);
         return taskRepository.save(task);

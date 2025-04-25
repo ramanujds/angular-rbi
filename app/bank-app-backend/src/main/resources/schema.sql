@@ -26,6 +26,14 @@ CREATE TABLE bank_account_loan_requests
     loan_requests_id BIGINT NOT NULL
 );
 
+CREATE TABLE user_record (
+                             id BIGINT PRIMARY KEY,
+                             username VARCHAR(255) UNIQUE NOT NULL,
+                             password VARCHAR(255) NOT NULL,
+                             role VARCHAR(255) NOT NULL
+);
+
+
 ALTER TABLE bank_account
     ADD CONSTRAINT uc_bank_account_accountnumber UNIQUE (account_number);
 

@@ -1,4 +1,4 @@
-package com.rbi.mytaskmanager.security;
+package com.rbi.bankapp.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -38,9 +38,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
         String token = header.substring(7);
         if (token!=null) {
+            log.info("Token: "+token);
             String username = jwtUtil.getUsernameFromToken(token);
             log.info("Username: "+username);
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            log.info("UserDetails: "+userDetails.toString());
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);

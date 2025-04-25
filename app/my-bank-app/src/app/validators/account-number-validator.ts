@@ -8,7 +8,7 @@ export function accountNumberValidator(accountsService:AccountsService):AsyncVal
             return accountsService.fetchAccountByNumber(control.value.trim())
                     .pipe(
                         map(
-                                response => response.length ? { 'invalid-account-number': {value:control.value} } : null
+                                response => response ? { 'invalid-account-number': {value:control.value} } : null
                     )
                 )
     }

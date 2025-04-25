@@ -1,5 +1,5 @@
 
-## What are Template-Driven Forms?
+# What are Template-Driven Forms?
 
 - Use Angular **directives** (`ngModel`, `required`, `#form="ngForm"`, etc.)
 - Logic resides mostly in the **HTML template**

@@ -5,6 +5,7 @@
           <p class="card-text">Account Number : {{account?.accountNumber}}</p>
           <p class="card-text">Account Balance : {{account?.balance}}</p>
           <p class="card-text">Created at : {{account?.createdAt}}</p>
-          <button (click)="delete(account?.id)" class="btn btn-danger">Delete</button>
+          <button (click)="getDetails([account?.accountNumber])" class="btn btn-dark">Get Details</button>
+        | <button class="btn btn-secondary">Request for Loan</button>
         </div>
       </div>

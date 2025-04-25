@@ -15,3 +15,7 @@ INSERT INTO bank_account_loan_requests (bank_account_id, loan_requests_id)
 VALUES
 (1, 1),
 (2, 2);
+
+
+INSERT INTO user_record (id, username, password, role) values
+    (1,'user','$2a$12$maU/rzZB3S2pZE4kIMYb6ewjNRfSkd9kzH4Mz84pC.NkZXD8hpotm','USER');

@@ -10,7 +10,7 @@ export class AccountsService {
 
   private acoountsClient=inject(HttpClient)
 
-  readonly baseUrl = "http://localhost:3000/accounts";
+  readonly baseUrl = "http://localhost:5000/api/v1/accounts";
 
   constructor() { }
 
@@ -39,9 +39,9 @@ export class AccountsService {
        
       }
 
-      fetchAccountByNumber(accountNumber:string):Observable<Array<BankAccount>>{
+      fetchAccountByNumber(accountNumber:string):Observable<BankAccount>{
         
-          return this.acoountsClient.get<Array<BankAccount>>(this.baseUrl+"?accountNumber="+accountNumber)
+          return this.acoountsClient.get<BankAccount>(this.baseUrl+"/account/"+accountNumber)
       }
 
 

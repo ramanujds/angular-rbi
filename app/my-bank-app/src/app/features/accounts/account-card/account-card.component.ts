@@ -1,6 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { BankAccount } from '../../../models/BankAccount';
 import { AccountsService } from '../accounts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-card',
@@ -14,10 +15,17 @@ export class AccountCardComponent {
   account?:BankAccount;
 
   private accountService=inject(AccountsService)
+  private router= inject(Router)
 
   delete(id:any){
    if(confirm("Sure to delete?"))
       this.accountService.deleteAccount(id)
+  }
+
+  getDetails(accNumber:any){
+    console.log("Navigating to /accounts/"+accNumber);
+    
+      this.router.navigate(['/accounts/'+accNumber])
   }
 
 }
