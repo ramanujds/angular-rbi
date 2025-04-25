@@ -4,6 +4,8 @@ import { AccountsListsComponent } from './features/accounts/accounts-lists/accou
 import { LoansFormComponent } from './features/loans/loans-form/loans-form.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { AccountDetailsComponent } from './features/accounts/account-details/account-details.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { authGuard } from './features/auth/auth.guard';
 
 export const routes: Routes = [
     { path:'', redirectTo:'/accounts', pathMatch:'full'},
@@ -11,8 +13,8 @@ export const routes: Routes = [
         {path:'create', component:AccountsFromComponent},
         {path:'list',component:AccountsListsComponent},
         {path:':accNumber',component:AccountDetailsComponent}
-    ]}
-    ,
+    ],canActivate:[authGuard]},
+    {path:'login',component:LoginComponent},
     {path:'loan-request',component:LoansFormComponent},
     {path:'error',component:ErrorComponent},
     {path:'**',redirectTo:'/error'}
