@@ -9,11 +9,7 @@ import { authGuard } from './features/auth/auth.guard';
 
 export const routes: Routes = [
     { path:'', redirectTo:'/accounts', pathMatch:'full'},
-    {path:'accounts', children:[
-        {path:'create', component:AccountsFromComponent},
-        {path:'list',component:AccountsListsComponent},
-        {path:':accNumber',component:AccountDetailsComponent}
-    ],canActivate:[authGuard]},
+    {path:'accounts', loadChildren:()=>import('./features/accounts/account.routes').then(m=>m.accountRoutes)},
     {path:'login',component:LoginComponent},
     {path:'loan-request',component:LoansFormComponent},
     {path:'error',component:ErrorComponent},

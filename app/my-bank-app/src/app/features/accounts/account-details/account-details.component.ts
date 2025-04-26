@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BankAccount } from '../../../models/BankAccount';
 import { AccountsService } from '../accounts.service';
@@ -15,23 +15,36 @@ export class AccountDetailsComponent implements OnInit {
   private currentRoute = inject(ActivatedRoute)
   private accountService = inject(AccountsService)
 
-  account?:BankAccount;
+  account?: BankAccount;
 
-  accountDetails?:BankAccount;
+  accountDetails?: BankAccount;
+
+  constructor() {
+    effect(
+      () => {
+        const accNumber = this.currentRoute.snapshot.paramMap.get('accNumber');
+        if (accNumber != null)
+          this.accountService.fetchAccountByNumber(accNumber).subscribe(
+            response => this.accountDetails = response
+          )
+
+      }
+    )
+  }
 
   ngOnInit(): void {
-      // this.currentRoute.params.subscribe(
-      //   param => {
-      //     this.accountNumber=param['accNumber']
-      //     // fetch account deatils from backend
+    // this.currentRoute.params.subscribe(
+    //   param => {
+    //     this.accountNumber=param['accNumber']
+    //     // fetch account deatils from backend
 
-      //   }
-      // )
-      const accNumber = this.currentRoute.snapshot.paramMap.get('accNumber');
-      if(accNumber!=null)
-        this.accountService.fetchAccountByNumber(accNumber).subscribe(
-      response => this.accountDetails=response
-    )
+    //   }
+    // )
+    //   const accNumber = this.currentRoute.snapshot.paramMap.get('accNumber');
+    //   if(accNumber!=null)
+    //     this.accountService.fetchAccountByNumber(accNumber).subscribe(
+    //   response => this.accountDetails=response
+    // )
 
 
   }

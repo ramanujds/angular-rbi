@@ -17,5 +17,8 @@ VALUES
 (2, 2);
 
 
+-- username: user
+-- password: pass1234
+
 INSERT INTO user_record (id, username, password, role) values
     (1,'user','$2a$12$maU/rzZB3S2pZE4kIMYb6ewjNRfSkd9kzH4Mz84pC.NkZXD8hpotm','USER');
